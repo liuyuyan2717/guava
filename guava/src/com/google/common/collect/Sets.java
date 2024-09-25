@@ -962,6 +962,18 @@ public final class Sets {
       }
 
       @Override
+      public boolean equals(@CheckForNull Object o) {
+        if (o == this) return true;
+        if (!(o instanceof Set)) return false;
+        Collection<?> c = (Collection<?>) o;
+        try {
+          return containsAll(c);
+        } catch (ClassCastException | NullPointerException unused) {
+          return false;
+        }
+      }
+
+      @Override
       public boolean isEmpty() {
         return set2.containsAll(set1);
       }
